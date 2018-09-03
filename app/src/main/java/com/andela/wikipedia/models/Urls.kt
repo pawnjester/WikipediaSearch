@@ -1,0 +1,35 @@
+package com.andela.wikipedia.models
+
+
+//an object in kotlin would help us create static methods
+object Urls {
+    val BaseUrl = "https://www.mediawiki.org/w/api.php"
+
+    fun getSearchUrl(term: String, skip: Int, take: Int): String {
+        return BaseUrl + "?action=query" +
+                "&formatversion=2" +
+                "&generator=prefixsearch" +
+                "gpssearch=$term" +
+                "gpslimit=$take" +
+                "gpsoffset=$skip" +
+                "&prop=pageimages|info" +
+                "piprop=thumbnail|url" +
+                "&pithumbsize=200" +
+                "&pilimit=$take" +
+                "&wbptterms=description" +
+                "&format=json" +
+                "&inprop=url"
+    }
+
+    fun getRandomUrl(take: Int) :String {
+        return BaseUrl + "?action=query" +
+                "format=json" +
+                "&formatversion=2" +
+                "&generator=random" +
+                "&grnnamespace=0" +
+                "&prop=pageimages|info" +
+                "&grnlimit=$take" +
+                "&inprop=url" +
+                "&pithumbsize=200"
+    }
+}
